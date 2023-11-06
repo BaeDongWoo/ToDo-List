@@ -1,8 +1,12 @@
 import './App.css';
-import Frame from './components/form/Frame';
+import LoginPage from './components/login/LoginPage';
 
 function App() {
-  return <div className="App"></div>;
+  return (
+    <div>
+      <LoginPage />
+    </div>
+  );
 }
 
 export default App;

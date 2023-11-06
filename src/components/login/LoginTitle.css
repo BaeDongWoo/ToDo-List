@@ -1,0 +1,17 @@
+.Login-title {
+  width: 100%;
+  height: 100%;
+  margin-top: 300px;
+}
+.title h1 {
+  margin: auto;
+  font-size: 100px;
+}
+.start-btn {
+  margin-top: 50px;
+  background-color: #6a24fe;
+  color: #fff;
+  width: 100px;
+  height: 50px;
+  border-radius: 10px;
+}
