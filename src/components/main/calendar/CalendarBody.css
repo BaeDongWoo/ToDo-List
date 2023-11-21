@@ -1,0 +1,21 @@
+.body {
+  font-weight: bold;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+.body * {
+  line-height: 30px;
+  width: 70px;
+  height: 70px;
+}
+.week:nth-child(7n) {
+  color: blue;
+}
+.week:nth-child(7n + 1) {
+  color: red;
+}
+.next-week,
+.prev-week {
+  color: gray;
+}

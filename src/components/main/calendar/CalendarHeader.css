@@ -1,18 +1,16 @@
 .calendar-header {
+  background-color: #6924fe69;
+  font-weight: bold;
   margin: auto;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
 }
-.day {
-  width: 30%;
-}
-.days {
-  display: flex;
-  justify-content: center;
-}
-.days :nth-child(6) {
-  color: blue;
-}
-.days :nth-child(7) {
-  color: rgb(255, 0, 0);
+.calendar-header > button {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #6924fe69;
+  border: 0.2px solid #6924fe69;
+  line-height: 24px;
+  margin-top: 10px;
 }

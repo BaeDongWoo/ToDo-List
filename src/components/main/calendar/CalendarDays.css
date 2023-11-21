@@ -1,0 +1,14 @@
+.day {
+  width: 70px;
+}
+.days {
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+}
+.days :nth-child(7) {
+  color: blue;
+}
+.days :nth-child(1) {
+  color: rgb(255, 0, 0);
+}
