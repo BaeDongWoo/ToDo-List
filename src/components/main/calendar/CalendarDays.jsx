@@ -1,7 +1,7 @@
 import './CalendarDays.css';
 const CalendarDays = () => {
   const days = [];
-  const day = ['월', '화', '수', '목', '금', '토', '일'];
+  const day = ['일', '월', '화', '수', '목', '금', '토'];
   day.map((d, idx) => {
     days.push(
       <div className="day" key={idx}>
