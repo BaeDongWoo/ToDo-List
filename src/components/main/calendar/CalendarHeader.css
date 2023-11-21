@@ -1,0 +1,18 @@
+.calendar-header {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+.day {
+  width: 30%;
+}
+.days {
+  display: flex;
+  justify-content: center;
+}
+.days :nth-child(6) {
+  color: blue;
+}
+.days :nth-child(7) {
+  color: rgb(255, 0, 0);
+}
