@@ -1,14 +1,16 @@
 import { useState } from 'react';
 import './CalendarBody.css';
-const CalendarBody = ({ date }) => {
+const CalendarBody = ({ date, setDate }) => {
   const [selectCell, setSelectCell] = useState(date.getDate());
+  const year = date.getFullYear();
+  const month = date.getMonth();
   const selectHandeler = (e) => {
     const cell = Number(e.target.innerText);
+    setDate(new Date(year, month, cell));
     setSelectCell(cell);
+    console.log(date.getDate());
   };
   const setCalendar = () => {
-    const year = date.getFullYear();
-    const month = date.getMonth();
     const daysInMonth = new Date(year, month + 1, 0).getDate();
     const startDay = new Date(year, month, 1).getDay();
     const daysInPrevMonth = new Date(year, month, 0).getDate();
