@@ -25,7 +25,8 @@ const CalendarBody = ({ date }) => {
       key += 1;
     }
     const daysInNextMonth = 7 - (calendar.length % 7);
-    for (let i = 1; i <= daysInNextMonth; i++) {
+    for (let i = 1; i <= daysInNextMonth + 7; i++) {
+      if (calendar.length === 42) break;
       calendar.push(
         <div className="next-week" key={key}>
           {new Date(year, month + 1, i).getDate()}
