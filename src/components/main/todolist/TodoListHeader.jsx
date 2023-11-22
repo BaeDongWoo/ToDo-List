@@ -3,7 +3,12 @@ import { useState } from 'react';
 const TodoListHeader = ({ date, todoList, setTodoList }) => {
   const [inputTodo, setInputTodo] = useState('');
   const todoListHandler = () => {
-    setTodoList([...todoList, { title: inputTodo }]);
+    const todos = todoList.concat({ title: inputTodo });
+    setTodoList(
+      todos.map((todo, idx) => {
+        return { ...todo, id: idx };
+      })
+    );
     setInputTodo('');
   };
   const onChangeHandler = (e) => {
