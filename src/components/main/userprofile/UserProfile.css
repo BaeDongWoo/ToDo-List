@@ -1,0 +1,9 @@
+.user-profile {
+  width: 500px;
+  height: 200px;
+  border: 1px solid black;
+  margin: auto;
+  margin-bottom: 30px;
+  border-radius: 10px;
+  display: flex;
+}
