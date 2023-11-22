@@ -1,5 +1,11 @@
+import { useState } from 'react';
 import './CalendarBody.css';
 const CalendarBody = ({ date }) => {
+  const [selectCell, setSelectCell] = useState(date.getDate());
+  const selectHandeler = (e) => {
+    const cell = Number(e.target.innerText);
+    setSelectCell(cell);
+  };
   const setCalendar = () => {
     const year = date.getFullYear();
     const month = date.getMonth();
@@ -17,11 +23,25 @@ const CalendarBody = ({ date }) => {
       key += 1;
     }
     for (let i = 1; i <= daysInMonth; i++) {
-      calendar.push(
-        <div className="week" key={key}>
-          {new Date(year, month, i).getDate()}
-        </div>
-      );
+      if (selectCell === i) {
+        calendar.push(
+          <div
+            className="week select"
+            key={key}
+            onClick={selectHandeler}
+            value={22}
+          >
+            {new Date(year, month, i).getDate()}
+          </div>
+        );
+      } else {
+        calendar.push(
+          <div className="week" key={key} onClick={selectHandeler}>
+            {new Date(year, month, i).getDate()}
+          </div>
+        );
+      }
+
       key += 1;
     }
     const daysInNextMonth = 7 - (calendar.length % 7);
