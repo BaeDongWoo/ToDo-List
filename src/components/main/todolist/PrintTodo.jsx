@@ -1,4 +1,41 @@
+import { useState } from 'react';
+
 const PrintTodo = ({ todoList, setTodoList }) => {
+  const [grab, setGrab] = useState(null);
+  const _onDragOver = (e) => {
+    e.preventDefault();
+  };
+
+  const _onDragStart = (e) => {
+    setGrab(e.target);
+    e.target.classList.add('grabbing');
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/html', e.target);
+  };
+
+  const _onDragEnd = (e) => {
+    e.target.classList.remove('grabbing');
+    e.dataTransfer.dropEffect = 'move';
+  };
+
+  const _onDrop = (e) => {
+    let grabPosition = grab.id;
+    let targetPosition = e.target.id;
+    let _list = [...todoList];
+    _list[grabPosition] = _list.splice(
+      targetPosition,
+      1,
+      _list[grabPosition]
+    )[0];
+
+    setTodoList(
+      _list.map((todo, idx) => {
+        return { ...todo, id: idx };
+      })
+    );
+    console.log(todoList);
+  };
+
   const deleteTodolist = (id) => {
     setTodoList((todoList) => todoList.filter((todo) => todo.id !== id));
   };
@@ -13,7 +50,16 @@ const PrintTodo = ({ todoList, setTodoList }) => {
     <div className="todo-list">
       <ul>
         {todoList.map((todo, idx) => (
-          <li className="todo" key={idx} id={idx}>
+          <li
+            className="todo"
+            key={idx}
+            id={idx}
+            draggable
+            onDragOver={_onDragOver}
+            onDragStart={_onDragStart}
+            onDragEnd={_onDragEnd}
+            onDrop={_onDrop}
+          >
             <input
               type="checkbox"
               className="checkbox"
@@ -25,6 +71,7 @@ const PrintTodo = ({ todoList, setTodoList }) => {
                 todo.checked === false ? 'todo-title' : 'todo-title-checked'
               }
               value={todo.title}
+              id={idx}
             >
               {todo.title}
             </div>
