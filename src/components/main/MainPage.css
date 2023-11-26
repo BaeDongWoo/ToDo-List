@@ -1,0 +1,41 @@
+.main-page {
+  width: 100%;
+  height: 1080px;
+  display: flex;
+  /* justify-content: space-around; */
+}
+.profile-calendar {
+  width: 50%;
+}
+.todo-form {
+  width: 50%;
+}
+.checkbox {
+  margin-top: 4px;
+}
+.todo-title,
+.todo-title-checked {
+  margin-top: 3px;
+  width: 90%;
+  background-color: bisque;
+}
+.todo-title-checked {
+  text-decoration: line-through;
+}
+.todo {
+  display: flex;
+}
+.todo-list-body {
+  height: 80%;
+  overflow-x: hidden;
+}
+.save-btn {
+  background-color: #6a24fe;
+  color: #fff;
+  width: 100px;
+  height: 50px;
+  border-radius: 10px;
+}
+.down {
+  background-color: #6a24fe;
+}
