@@ -6,10 +6,13 @@
   justify-content: space-evenly;
   flex-wrap: wrap;
 }
-.body * {
+.week,
+.prev-week,
+.next-week {
   line-height: 30px;
   width: 100px;
   height: 100px;
+  z-index: 1;
 }
 .week:nth-child(7n) {
   color: blue;
@@ -26,4 +29,23 @@
 }
 .select {
   background-color: gray;
+}
+.all-todo-list {
+  height: 70px;
+  list-style: none;
+  padding: 0;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.all-todo-list::-webkit-scrollbar {
+  display: none;
+}
+
+.all-todo {
+  font-size: 15px;
+}
+.all-todo-select {
+  font-size: 15px;
+  text-decoration: line-through;
 }
