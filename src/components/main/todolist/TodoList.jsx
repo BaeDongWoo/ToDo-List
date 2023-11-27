@@ -2,8 +2,7 @@ import { useState } from 'react';
 import './TodoList.css';
 import TodoListHeader from './TodoListHeader';
 import PrintTodo from './PrintTodo';
-const TodoList = ({ date }) => {
-  const [todoList, setTodoList] = useState([]);
+const TodoList = ({ date, todoList, setTodoList }) => {
   return (
     <div className="todo-list-form">
       <TodoListHeader

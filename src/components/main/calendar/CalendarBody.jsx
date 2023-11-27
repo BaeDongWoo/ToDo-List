@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './CalendarBody.css';
-const CalendarBody = ({ date, setDate, allTodoList }) => {
+const CalendarBody = ({ date, setDate, allTodoList, setTodoList }) => {
   const [selectCell, setSelectCell] = useState(date.getDate());
   const year = date.getFullYear();
   const month = date.getMonth();
