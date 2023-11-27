@@ -1,16 +1,22 @@
 .calendar-header {
-  background-color: #6924fe69;
+  padding: 10px;
+  background-color: #d1ac36;
   font-weight: bold;
   margin: auto;
   display: flex;
   justify-content: space-around;
+  height: 100px;
+  border-radius: 10px 10px 0 0;
 }
 .calendar-header > button {
-  width: 30px;
-  height: 30px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
-  background-color: #6924fe69;
-  border: 0.2px solid #6924fe69;
+  background-color: #1a1f27;
   line-height: 24px;
-  margin-top: 10px;
+  margin-top: 15px;
+  color: #fff;
+}
+.calendar-header > button:hover {
+  background-color: #444952;
 }

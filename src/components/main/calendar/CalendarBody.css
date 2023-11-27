@@ -1,4 +1,6 @@
 .body {
+  width: 700px;
+  height: 700px;
   font-weight: bold;
   display: flex;
   justify-content: space-evenly;
@@ -6,8 +8,8 @@
 }
 .body * {
   line-height: 30px;
-  width: 70px;
-  height: 70px;
+  width: 100px;
+  height: 100px;
 }
 .week:nth-child(7n) {
   color: blue;
@@ -15,7 +17,13 @@
 .week:nth-child(7n + 1) {
   color: red;
 }
+.week:hover {
+  cursor: pointer;
+}
 .next-week,
 .prev-week {
   color: gray;
+}
+.select {
+  background-color: gray;
 }

@@ -1,5 +1,6 @@
 .day {
-  width: 70px;
+  width: 700px;
+  height: 30px;
 }
 .days {
   font-weight: bold;

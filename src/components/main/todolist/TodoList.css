@@ -1,0 +1,20 @@
+.todo-list-form {
+  width: 700px;
+  height: 850px;
+  /* border: 1px solid #d1ac36; */
+  margin: auto;
+  border-radius: 10px;
+  background-color: #e0e3e7;
+}
+
+.todo-list-body {
+  height: 700px;
+  overflow-x: hidden;
+}
+.save-btn {
+  background-color: #d1ac36;
+  color: #fff;
+  width: 100px;
+  height: 50px;
+  border-radius: 10px;
+}
