@@ -1,5 +1,6 @@
 import React from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import Card from './Card';
 
 const PrintTodo = ({ todoList, setTodoList }) => {
   const deleteTodolist = (id) => {
@@ -13,7 +14,6 @@ const PrintTodo = ({ todoList, setTodoList }) => {
       )
     );
   };
-
   const onDragEnd = (result) => {
     console.log(result);
     if (!result.destination) {
@@ -51,32 +51,11 @@ const PrintTodo = ({ todoList, setTodoList }) => {
                 index={index}
               >
                 {(provided) => (
-                  <li
-                    className="todo"
-                    ref={provided.innerRef}
-                    {...provided.draggableProps}
-                    {...provided.dragHandleProps}
-                  >
-                    <input
-                      type="checkbox"
-                      className="checkbox"
-                      checked={todo.checked}
-                      onChange={() => toggleChecked(todo.id)}
-                    />
-                    <div
-                      className={
-                        todo.checked ? 'todo-title-checked' : 'todo-title'
-                      }
-                    >
-                      {todo.title}
-                    </div>
-                    <button
-                      className="todo-delete-btn"
-                      onClick={() => deleteTodolist(todo.id)}
-                    >
-                      x
-                    </button>
-                  </li>
+                  <Card
+                    todo={todo}
+                    setTodoList={setTodoList}
+                    provided={provided}
+                  />
                 )}
               </Draggable>
             ))}
