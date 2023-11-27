@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+import './TodoListHeader.css';
 const TodoListHeader = ({ date, todoList, setTodoList }) => {
   const [inputTodo, setInputTodo] = useState('');
   const todoListHandler = () => {
@@ -17,17 +17,17 @@ const TodoListHeader = ({ date, todoList, setTodoList }) => {
   };
   return (
     <div className="todo-header">
-      <div className="select-date">
+      <h3 className="select-date">
         {date.getFullYear()}년 {date.getMonth() + 1}월 {date.getDate()}일
-      </div>
+      </h3>
       <div className="add-todo">
         <input
+          className="input-todo"
           type="text"
-          placeholder="할일을 입력해주세요"
+          placeholder="할일을 입력해주세요."
           onChange={onChangeHandler}
           value={inputTodo}
         ></input>
-        <div className="add-todo-text">일정 추가</div>
         <button
           type="button"
           className="add-todo-button"
