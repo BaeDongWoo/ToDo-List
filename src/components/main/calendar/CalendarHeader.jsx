@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import './CalendarHeader.css';
 const CalendarHeader = ({ date, setDate }) => {
   const monthHandler = (e) => {
@@ -18,7 +17,7 @@ const CalendarHeader = ({ date, setDate }) => {
         {'<'}
       </button>
       <div className="yearAndMonth">
-        <div className="year">{date.getFullYear()}년</div>
+        <h3 className="year">{date.getFullYear()}년</h3>
         <div className="month">{date.getMonth() + 1}월</div>
       </div>
       <button type="button" className="next-month" onClick={monthHandler}>
