@@ -2,7 +2,23 @@ import { useState } from 'react';
 import './TodoList.css';
 import TodoListHeader from './TodoListHeader';
 import PrintTodo from './PrintTodo';
-const TodoList = ({ date, todoList, setTodoList }) => {
+const TodoList = ({
+  date,
+  todoList,
+  setTodoList,
+  allTodoList,
+  setAllTodoList,
+}) => {
+  const saveBtnHandler = () => {
+    const tempY = date.getFullYear();
+    const tempM = date.getMonth();
+    const tempD = date.getDate();
+    const dateFormat = [tempY, tempM + 1, tempD].join('-');
+    const tempAllTodo = allTodoList.filter((todo) => todo.date !== dateFormat);
+    tempAllTodo.push({ date: dateFormat, todoList: todoList });
+    setAllTodoList([...tempAllTodo]);
+  };
+
   return (
     <div className="todo-list-form">
       <TodoListHeader
@@ -14,7 +30,9 @@ const TodoList = ({ date, todoList, setTodoList }) => {
         <PrintTodo todoList={todoList} setTodoList={setTodoList} />
       </div>
       <div className="todo-list-footer">
-        <button className="save-btn">저장하기</button>
+        <button className="save-btn" onClick={saveBtnHandler}>
+          저장하기
+        </button>
       </div>
     </div>
   );
