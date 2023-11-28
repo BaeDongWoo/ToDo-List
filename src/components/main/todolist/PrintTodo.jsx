@@ -4,22 +4,25 @@ import Card from './Card';
 import './PrintTodo.css';
 const PrintTodo = ({ todoList, setTodoList }) => {
   const onDragEnd = (result) => {
-    console.log(result);
     if (!result.destination) {
       return;
     }
 
     const sourceIndex = result.source.index;
     const destinationIndex = result.destination.index;
-
     setTodoList((todos) => {
       console.log(todos);
+      // let updatedTodos = [...todos];
+      // updatedTodos[destinationIndex] = updatedTodos.splice(
+      //   sourceIndex,
+      //   1,
+      //   updatedTodos[destinationIndex]
+      // )[0];
+      // return updatedTodos.map((todo, index) => ({ ...todo, id: index }));
       let updatedTodos = [...todos];
-      updatedTodos[destinationIndex] = updatedTodos.splice(
-        sourceIndex,
-        1,
-        updatedTodos[destinationIndex]
-      )[0];
+      const moved = updatedTodos.splice(sourceIndex, 1)[0];
+      console.log(moved);
+      updatedTodos.splice(destinationIndex, 0, moved);
       return updatedTodos.map((todo, index) => ({ ...todo, id: index }));
     });
   };
