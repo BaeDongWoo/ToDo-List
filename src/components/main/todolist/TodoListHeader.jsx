@@ -3,6 +3,10 @@ import './TodoListHeader.css';
 const TodoListHeader = ({ date, todoList, setTodoList }) => {
   const [inputTodo, setInputTodo] = useState('');
   const todoListHandler = () => {
+    if (inputTodo.trim() === '') {
+      setInputTodo('');
+      return alert('할일을 입력해주세요');
+    }
     const todos = todoList.concat({ title: inputTodo, checked: false });
     setTodoList(
       todos.map((todo, idx) => {
@@ -11,6 +15,11 @@ const TodoListHeader = ({ date, todoList, setTodoList }) => {
     );
     console.log(todoList);
     setInputTodo('');
+  };
+  const onKeyDownHandler = (e) => {
+    if (e.key === 'Enter') {
+      todoListHandler();
+    }
   };
   const onChangeHandler = (e) => {
     setInputTodo(e.target.value);
@@ -26,6 +35,7 @@ const TodoListHeader = ({ date, todoList, setTodoList }) => {
           type="text"
           placeholder="할일을 입력해주세요."
           onChange={onChangeHandler}
+          onKeyDown={onKeyDownHandler}
           value={inputTodo}
         ></input>
         <button
