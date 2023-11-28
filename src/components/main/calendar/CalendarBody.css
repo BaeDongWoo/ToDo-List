@@ -37,6 +37,8 @@
   overflow-y: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .all-todo-list::-webkit-scrollbar {
   display: none;
