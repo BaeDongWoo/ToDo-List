@@ -1,7 +1,7 @@
-import { useState } from 'react';
 import './TodoList.css';
 import TodoListHeader from './TodoListHeader';
 import PrintTodo from './PrintTodo';
+import { DateFormat } from '../../form/DateFormat';
 const TodoList = ({
   date,
   todoList,
@@ -10,10 +10,7 @@ const TodoList = ({
   setAllTodoList,
 }) => {
   const saveBtnHandler = () => {
-    const tempY = date.getFullYear();
-    const tempM = date.getMonth();
-    const tempD = date.getDate();
-    const dateFormat = [tempY, tempM + 1, tempD].join('-');
+    const dateFormat = DateFormat(date);
     const tempAllTodo = allTodoList.filter((todo) => todo.date !== dateFormat);
     tempAllTodo.push({ date: dateFormat, todoList: todoList });
     setAllTodoList([...tempAllTodo]);

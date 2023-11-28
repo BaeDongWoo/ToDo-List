@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './CalendarBody.css';
+import { DateFormat } from '../../form/DateFormat';
 const CalendarBody = ({ date, setDate, allTodoList, setTodoList }) => {
   const [selectCell, setSelectCell] = useState(date.getDate());
   const year = date.getFullYear();
@@ -24,10 +25,7 @@ const CalendarBody = ({ date, setDate, allTodoList, setTodoList }) => {
     }
     for (let i = 1; i <= daysInMonth; i++) {
       const tempDate = new Date(year, month, i);
-      const tempY = tempDate.getFullYear();
-      const tempM = tempDate.getMonth();
-      const tempD = tempDate.getDate();
-      const dateFormat = [tempY, tempM + 1, tempD].join('-');
+      const dateFormat = DateFormat(tempDate);
       const todoListForDate = allTodoList.find(
         (item) => item.date === dateFormat
       );
@@ -37,9 +35,9 @@ const CalendarBody = ({ date, setDate, allTodoList, setTodoList }) => {
             className="week select"
             key={key}
             onClick={() => selectHandeler(i)}
-            value={tempD}
+            value={i}
           >
-            {tempD}
+            {i}
             {todoListForDate && (
               <ul className="all-todo-list">
                 {todoListForDate.todoList.map((todo) => (
@@ -62,9 +60,9 @@ const CalendarBody = ({ date, setDate, allTodoList, setTodoList }) => {
             className="week"
             key={key}
             onClick={() => selectHandeler(i)}
-            value={tempD}
+            value={i}
           >
-            {tempD}
+            {i}
             {todoListForDate && (
               <ul className="all-todo-list">
                 {todoListForDate.todoList.map((todo) => (

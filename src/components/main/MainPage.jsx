@@ -4,15 +4,30 @@ import UserProfile from './userprofile/UserProfile';
 import './MainPage.css';
 import { useEffect, useState } from 'react';
 import Header from '../form/Header';
+import { DateFormat } from '../form/DateFormat';
 const MainPage = () => {
   const [date, setDate] = useState(new Date());
   const [todoList, setTodoList] = useState([]);
-  const [allTodoList, setAllTodoList] = useState([]);
+  const [allTodoList, setAllTodoList] = useState([
+    {
+      date: '2023-11-27',
+      todoList: [
+        { title: '코테 풀기', checked: true, id: 0 },
+        { title: '리액트 강의 듣기', checked: false, id: 1 },
+        { title: '프로젝트 회의', checked: false, id: 2 },
+      ],
+    },
+    {
+      date: '2023-11-28',
+      todoList: [
+        { title: '정처기 공부하기', checked: false, id: 0 },
+        { title: '블로그 글쓰기', checked: true, id: 1 },
+        { title: '버그 수정하기', checked: false, id: 2 },
+      ],
+    },
+  ]);
   useEffect(() => {
-    const tempY = date.getFullYear();
-    const tempM = date.getMonth();
-    const tempD = date.getDate();
-    const dateFormat = [tempY, tempM + 1, tempD].join('-');
+    const dateFormat = DateFormat(date);
     const todoListForDate = allTodoList.find(
       (item) => item.date === dateFormat
     );

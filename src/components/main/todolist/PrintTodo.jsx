@@ -7,7 +7,6 @@ const PrintTodo = ({ todoList, setTodoList }) => {
     if (!result.destination) {
       return;
     }
-
     const sourceIndex = result.source.index;
     const destinationIndex = result.destination.index;
     setTodoList((todos) => {
@@ -21,13 +20,12 @@ const PrintTodo = ({ todoList, setTodoList }) => {
       // return updatedTodos.map((todo, index) => ({ ...todo, id: index }));
       let updatedTodos = [...todos];
       const moved = updatedTodos.splice(sourceIndex, 1)[0];
-      console.log(moved);
       updatedTodos.splice(destinationIndex, 0, moved);
       return updatedTodos.map((todo, index) => ({ ...todo, id: index }));
     });
   };
 
-  return (
+  return todoList.length !== 0 ? (
     <DragDropContext onDragEnd={onDragEnd}>
       <Droppable droppableId="todoList">
         {(provided) => (
@@ -56,6 +54,10 @@ const PrintTodo = ({ todoList, setTodoList }) => {
         )}
       </Droppable>
     </DragDropContext>
+  ) : (
+    <div className="empty-message">
+      <h2>일정이 없습니다.</h2>
+    </div>
   );
 };
 
