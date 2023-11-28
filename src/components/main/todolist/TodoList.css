@@ -10,11 +10,21 @@
 .todo-list-body {
   height: 700px;
   overflow-x: hidden;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 .save-btn {
   background-color: #d1ac36;
-  color: #fff;
+  color: #1a1f27;
+  font-weight: bold;
   width: 100px;
   height: 50px;
   border-radius: 10px;
+}
+.save-btn:hover {
+  background-color: #e0bf51;
+}
+.todo-list-body::-webkit-scrollbar {
+  display: none;
 }
