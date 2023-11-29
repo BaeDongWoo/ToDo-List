@@ -1,12 +1,16 @@
 import { useState } from 'react';
 import './CalendarBody.css';
 import { DateFormat } from '../../form/DateFormat';
-const CalendarBody = ({ date, setDate, allTodoList, setTodoList }) => {
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+const CalendarBody = ({ date, setDate }) => {
+  const allTodoList = useSelector((state) => state.allTodoList);
+  const dispatch = useDispatch();
   const [selectCell, setSelectCell] = useState(date.getDate());
   const year = date.getFullYear();
   const month = date.getMonth();
   const selectHandeler = (i) => {
-    setDate(new Date(year, month, i));
+    dispatch(setDate(new Date(year, month, i)));
     setSelectCell(i);
   };
   const setCalendar = () => {

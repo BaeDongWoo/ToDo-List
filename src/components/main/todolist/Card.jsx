@@ -1,15 +1,19 @@
+import { useDispatch } from 'react-redux';
 import './Card.css';
+import { useSelector } from 'react-redux';
 const Card = ({ todo, setTodoList, provided }) => {
+  const todoList = useSelector((state) => state.todoList);
+  const dispatch = useDispatch();
   const deleteTodolist = (id) => {
-    setTodoList((todos) => todos.filter((todo) => todo.id !== id));
+    const filterTodos = todoList.filter((todo) => todo.id !== id);
+    dispatch(setTodoList(filterTodos));
   };
 
   const toggleChecked = (id) => {
-    setTodoList((todos) =>
-      todos.map((todo) =>
-        todo.id === id ? { ...todo, checked: !todo.checked } : todo
-      )
+    const checkTodos = todoList.map((todo) =>
+      todo.id === id ? { ...todo, checked: !todo.checked } : todo
     );
+    dispatch(setTodoList(checkTodos));
   };
   return (
     <li

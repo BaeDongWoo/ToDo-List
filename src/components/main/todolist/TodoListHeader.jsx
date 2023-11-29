@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import './TodoListHeader.css';
+import { useDispatch } from 'react-redux';
 const TodoListHeader = ({ date, todoList, setTodoList }) => {
+  const dispatch = useDispatch();
   const [inputTodo, setInputTodo] = useState('');
   const todoListHandler = () => {
     if (inputTodo.trim() === '') {
@@ -8,10 +10,12 @@ const TodoListHeader = ({ date, todoList, setTodoList }) => {
       return alert('할일을 입력해주세요');
     }
     const todos = todoList.concat({ title: inputTodo, checked: false });
-    setTodoList(
-      todos.map((todo, idx) => {
-        return { ...todo, id: idx };
-      })
+    dispatch(
+      setTodoList(
+        todos.map((todo, idx) => {
+          return { ...todo, id: idx };
+        })
+      )
     );
     console.log(todoList);
     setInputTodo('');

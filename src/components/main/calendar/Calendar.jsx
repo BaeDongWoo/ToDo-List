@@ -3,17 +3,13 @@ import CalendarHeader from './CalendarHeader';
 import './Calendar.css';
 import CalendarDays from './CalendarDays';
 import CalendarBody from './CalendarBody';
-const Calendar = ({ date, setDate, allTodoList, setTodoList }) => {
+import { setDate } from '../../reducer/Action';
+const Calendar = ({ date }) => {
   return (
     <div className="calendar">
       <CalendarHeader date={date} setDate={setDate} />
       <CalendarDays />
-      <CalendarBody
-        date={date}
-        setDate={setDate}
-        allTodoList={allTodoList}
-        setTodoList={setTodoList}
-      />
+      <CalendarBody date={date} setDate={setDate} />
     </div>
   );
 };

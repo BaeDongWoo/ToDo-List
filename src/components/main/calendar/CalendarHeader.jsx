@@ -1,13 +1,21 @@
+import { useSelector } from 'react-redux';
 import './CalendarHeader.css';
+import { useDispatch } from 'react-redux';
+
 const CalendarHeader = ({ date, setDate }) => {
+  const dispatch = useDispatch();
   const monthHandler = (e) => {
     if (e.target.className === 'prev-month') {
-      setDate(
-        new Date(date.getFullYear(), date.getMonth() - 1, date.getDate())
+      dispatch(
+        setDate(
+          new Date(date.getFullYear(), date.getMonth() - 1, date.getDate())
+        )
       );
     } else {
-      setDate(
-        new Date(date.getFullYear(), date.getMonth() + 1, date.getDate())
+      dispatch(
+        setDate(
+          new Date(date.getFullYear(), date.getMonth() + 1, date.getDate())
+        )
       );
     }
   };

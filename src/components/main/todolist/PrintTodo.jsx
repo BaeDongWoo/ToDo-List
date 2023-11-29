@@ -2,27 +2,20 @@ import React from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import Card from './Card';
 import './PrintTodo.css';
+import { useDispatch } from 'react-redux';
 const PrintTodo = ({ todoList, setTodoList }) => {
+  const dispatch = useDispatch();
   const onDragEnd = (result) => {
     if (!result.destination) {
       return;
     }
     const sourceIndex = result.source.index;
     const destinationIndex = result.destination.index;
-    setTodoList((todos) => {
-      console.log(todos);
-      // let updatedTodos = [...todos];
-      // updatedTodos[destinationIndex] = updatedTodos.splice(
-      //   sourceIndex,
-      //   1,
-      //   updatedTodos[destinationIndex]
-      // )[0];
-      // return updatedTodos.map((todo, index) => ({ ...todo, id: index }));
-      let updatedTodos = [...todos];
-      const moved = updatedTodos.splice(sourceIndex, 1)[0];
-      updatedTodos.splice(destinationIndex, 0, moved);
-      return updatedTodos.map((todo, index) => ({ ...todo, id: index }));
-    });
+    let updateTodos = [...todoList];
+    const moved = updateTodos.splice(sourceIndex, 1)[0];
+    updateTodos.splice(destinationIndex, 0, moved);
+    updateTodos.map((todo, index) => ({ ...todo, id: index }));
+    dispatch(setTodoList(updateTodos));
   };
 
   return todoList.length !== 0 ? (
@@ -62,3 +55,10 @@ const PrintTodo = ({ todoList, setTodoList }) => {
 };
 
 export default PrintTodo;
+// let updatedTodos = [...todos];
+// updatedTodos[destinationIndex] = updatedTodos.splice(
+//   sourceIndex,
+//   1,
+//   updatedTodos[destinationIndex]
+// )[0];
+// return updatedTodos.map((todo, index) => ({ ...todo, id: index }));
