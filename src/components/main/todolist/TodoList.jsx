@@ -2,6 +2,7 @@ import './TodoList.css';
 import TodoListHeader from './TodoListHeader';
 import PrintTodo from './PrintTodo';
 import { DateFormat } from '../../form/DateFormat';
+import Button from '../../form/Button';
 const TodoList = ({
   date,
   todoList,
@@ -27,9 +28,11 @@ const TodoList = ({
         <PrintTodo todoList={todoList} setTodoList={setTodoList} />
       </div>
       <div className="todo-list-footer">
-        <button className="save-btn" onClick={saveBtnHandler}>
-          저장하기
-        </button>
+        <Button
+          className={'save-btn'}
+          label={'저장하기'}
+          clickHandler={saveBtnHandler}
+        />
       </div>
     </div>
   );

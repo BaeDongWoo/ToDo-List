@@ -1,4 +1,5 @@
 .main-page {
+  animation: fadein 0.5s;
   width: 100%;
   height: 1080px;
   background-color: #1a1f27;
@@ -15,4 +16,12 @@
 }
 .todo-form {
   width: 50%;
+}
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

@@ -1,3 +1,4 @@
+import Button from '../form/Button';
 import './LoginTitle.css';
 const LoginTitle = (props) => {
   return (
@@ -5,9 +6,11 @@ const LoginTitle = (props) => {
       <div className="title">
         <h1>Hello!!</h1>
         <h1>My To-Do</h1>
-        <button className="start-btn" onClick={props.startBtnHandler}>
-          시작하기
-        </button>
+        <Button
+          className={'start-btn'}
+          label={'시작하기'}
+          clickHandler={props.startBtnHandler}
+        />
       </div>
     </div>
   );

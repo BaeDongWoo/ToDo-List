@@ -2,19 +2,16 @@ import Frame from '../form/Frame';
 import LoginForm from './LoginForm';
 import LoginTitle from './LoginTitle';
 import './LoginPage.css';
-import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 const LoginPage = () => {
-  const [startBtn, setStartBtn] = useState(false);
+  // const [startBtn, setStartBtn] = useState(false);
+  const nav = useNavigate();
   const startBtnHandler = () => {
-    setStartBtn(true);
+    nav('/MainPage');
   };
   return (
     <Frame className="login">
-      {startBtn === false ? (
-        <LoginTitle startBtnHandler={startBtnHandler} />
-      ) : (
-        <LoginForm />
-      )}
+      <LoginTitle startBtnHandler={startBtnHandler} />
     </Frame>
   );
 };

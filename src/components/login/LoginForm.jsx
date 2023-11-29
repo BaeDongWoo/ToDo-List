@@ -3,6 +3,7 @@ import './LoginForm.css';
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Header from '../form/Header';
 const LoginForm = () => {
   const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
@@ -29,8 +30,9 @@ const LoginForm = () => {
   };
   return (
     <div className="login-container">
+      <Header />
       <div className="login-wrapper">
-        <h2>Login</h2>
+        <h2>지금 바로 일정을 등록해 보세요!</h2>
         <form method="get" id="login-form" onSubmit={handleLogin}>
           <input
             type="text"
