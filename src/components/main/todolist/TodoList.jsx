@@ -3,7 +3,7 @@ import TodoListHeader from './TodoListHeader';
 import PrintTodo from './PrintTodo';
 import { DateFormat } from '../../form/DateFormat';
 import Button from '../../form/Button';
-import { setAllTodoList } from '../../reducer.js/Action';
+import { setAllTodoList } from '../../reducer/Action';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';

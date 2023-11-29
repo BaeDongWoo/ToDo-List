@@ -1,4 +1,5 @@
 .todo-list-form {
+  position: relative;
   width: 700px;
   height: 850px;
   /* border: 1px solid #d1ac36; */
@@ -17,4 +18,33 @@
 
 .todo-list-body::-webkit-scrollbar {
   display: none;
+}
+
+.custom-confirm {
+  border-radius: 10px;
+  width: 700px;
+  height: 850px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  border: 1px solid #ccc;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.custom-confirm-content {
+  font-weight: bold;
+  width: 300px;
+  height: 200px;
+  background: white;
+  padding: 20px;
+  padding-top: 50px;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+  text-align: center;
 }

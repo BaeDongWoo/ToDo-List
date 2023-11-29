@@ -8,6 +8,9 @@ const LoginForm = () => {
   const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
   const nav = useNavigate();
+  const signUpPage = () => {
+    nav('/signUp');
+  };
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
@@ -15,13 +18,13 @@ const LoginForm = () => {
         userId,
         password,
       });
-      console.log(response);
+      console.log(response.data);
       // 서버에서의 응답을 확인하고 처리
-      if (response.data === '확인') {
-        console.log('로그인 성공!');
+      if (response.data.length !== 0) {
+        const userInfo = response.data[0];
+        localStorage.setItem('userInfo', JSON.stringify(userInfo));
         nav('/MainPage');
       } else {
-        console.log('로그인 실패');
         alert('아이디 또는 비밀번호가 다릅니다.');
       }
     } catch (error) {
@@ -33,7 +36,7 @@ const LoginForm = () => {
       <Header />
       <div className="login-wrapper">
         <h2>지금 바로 일정을 등록해 보세요!</h2>
-        <form method="get" id="login-form" onSubmit={handleLogin}>
+        <form method="post" id="login-form" onSubmit={handleLogin}>
           <input
             type="text"
             placeholder="아이디를 입력해 주세요"
@@ -50,9 +53,8 @@ const LoginForm = () => {
               setPassword(e.target.value);
             }}
           ></input>
-          <label htmlFor="remember-check"></label>
           <input type="submit" value="로그인"></input>
-          <input type="button" value="회원가입"></input>
+          <input type="button" value="회원가입" onClick={signUpPage}></input>
         </form>
       </div>
     </div>

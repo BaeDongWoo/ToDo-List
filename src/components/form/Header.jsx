@@ -18,6 +18,9 @@ const Header = () => {
         <img src={Logo} id="logo"></img>
         <div id="logo-title">My-ToDo</div>
       </button>
+      {/* <h3 className="user-name">
+        {JSON.parse(localStorage.getItem('userInfo')).user_name}님 환영합니다
+      </h3> */}
       <Button
         label={'로그인'}
         className={'login-btn'}

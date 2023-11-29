@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import CalendarHeader from './CalendarHeader';
 import './Calendar.css';
 import CalendarDays from './CalendarDays';

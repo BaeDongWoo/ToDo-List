@@ -10,14 +10,13 @@
   padding: 40px;
   box-sizing: border-box;
 }
-
 .login-wrapper > h2 {
   font-size: 40px;
   color: #fff;
   margin-bottom: 40px;
 }
 #login-form > input {
-  color: #fff;
+  color: #1a1f27;
   font-weight: bold;
   font-size: 25px;
   width: 100%;
@@ -27,7 +26,7 @@
   margin-bottom: 50px;
   border-radius: 10px;
   border: 3px solid #fff;
-  background-color: #1a1f27;
+  background-color: #e8f0fe;
 }
 #login-form > input::placeholder {
   color: #d2d2d2;
