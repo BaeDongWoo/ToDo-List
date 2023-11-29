@@ -3,18 +3,23 @@ import TodoListHeader from './TodoListHeader';
 import PrintTodo from './PrintTodo';
 import { DateFormat } from '../../form/DateFormat';
 import Button from '../../form/Button';
-const TodoList = ({
-  date,
-  todoList,
-  setTodoList,
-  allTodoList,
-  setAllTodoList,
-}) => {
+import { setAllTodoList } from '../../reducer/Action';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+const TodoList = ({ date, setTodoList, allTodoList }) => {
+  const todoList = useSelector((state) => state.todoList);
+  const dispatch = useDispatch();
   const saveBtnHandler = () => {
-    const dateFormat = DateFormat(date);
-    const tempAllTodo = allTodoList.filter((todo) => todo.date !== dateFormat);
-    tempAllTodo.push({ date: dateFormat, todoList: todoList });
-    setAllTodoList([...tempAllTodo]);
+    if (window.confirm('저장하시겠습니까?')) {
+      const dateFormat = DateFormat(date);
+      const tempAllTodo = allTodoList.filter(
+        (todo) => todo.date !== dateFormat
+      );
+      tempAllTodo.push({ date: dateFormat, todoList: todoList });
+      dispatch(setAllTodoList([...tempAllTodo]));
+    } else {
+      dispatch(setAllTodoList([...allTodoList]));
+    }
   };
 
   return (
