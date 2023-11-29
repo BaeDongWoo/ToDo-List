@@ -3,25 +3,27 @@ import TodoListHeader from './TodoListHeader';
 import PrintTodo from './PrintTodo';
 import { DateFormat } from '../../form/DateFormat';
 import Button from '../../form/Button';
-import { setAllTodoList } from '../../reducer/Action';
+import { setAllTodoList } from '../../reducer.js/Action';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
+import { useState } from 'react';
+import CustomConfirm from '../../form/CustomConfirm';
 const TodoList = ({ date, setTodoList, allTodoList }) => {
+  const [showConfirm, setShowConfirm] = useState(false);
+  const handleButtonClick = () => {
+    setShowConfirm(true);
+  };
   const todoList = useSelector((state) => state.todoList);
   const dispatch = useDispatch();
-  const saveBtnHandler = () => {
-    if (window.confirm('저장하시겠습니까?')) {
-      const dateFormat = DateFormat(date);
-      const tempAllTodo = allTodoList.filter(
-        (todo) => todo.date !== dateFormat
-      );
-      tempAllTodo.push({ date: dateFormat, todoList: todoList });
-      dispatch(setAllTodoList([...tempAllTodo]));
-    } else {
-      dispatch(setAllTodoList([...allTodoList]));
-    }
+  const saveHandler = () => {
+    const dateFormat = DateFormat(date);
+    const tempAllTodo = allTodoList.filter((todo) => todo.date !== dateFormat);
+    tempAllTodo.push({ date: dateFormat, todoList: todoList });
+    dispatch(setAllTodoList([...tempAllTodo]));
   };
-
+  const rollbackHandler = () => {
+    dispatch(setAllTodoList([...allTodoList]));
+  };
   return (
     <div className="todo-list-form">
       <TodoListHeader
@@ -36,9 +38,17 @@ const TodoList = ({ date, setTodoList, allTodoList }) => {
         <Button
           className={'save-btn'}
           label={'저장하기'}
-          clickHandler={saveBtnHandler}
+          clickHandler={handleButtonClick}
         />
       </div>
+      {showConfirm && (
+        <CustomConfirm
+          setShowConfirm={setShowConfirm}
+          message={'저장하시겠습니까?'}
+          confirm={saveHandler}
+          cancel={rollbackHandler}
+        />
+      )}
     </div>
   );
 };
