@@ -17,7 +17,6 @@ const TodoListHeader = ({ date, todoList, setTodoList }) => {
         })
       )
     );
-    console.log(todoList);
     setInputTodo('');
   };
   const onKeyDownHandler = (e) => {

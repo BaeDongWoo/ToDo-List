@@ -3,10 +3,23 @@ import './Header.css';
 import Logo from '../../assets/mytodo-logo.png';
 import Button from './Button';
 import { useNavigate } from 'react-router-dom';
-
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { setUserInfo, setAllTodoList, setTodoList } from '../reducer/Action';
 const Header = () => {
+  const [isLabel, setIsLabel] = useState('로그인');
+  const dispatch = useDispatch();
+  const userInfo = useSelector((state) => state.userInfo);
+  useEffect(() => {
+    if (userInfo) setIsLabel('로그아웃');
+  }, []);
   const nav = useNavigate();
   const loginBtnHandler = () => {
+    sessionStorage.clear();
+    dispatch(setUserInfo(null));
+    dispatch(setAllTodoList([]));
+    dispatch(setTodoList([]));
     nav('/login');
   };
   const logoHandler = () => {
@@ -22,7 +35,7 @@ const Header = () => {
         {JSON.parse(localStorage.getItem('userInfo')).user_name}님 환영합니다
       </h3> */}
       <Button
-        label={'로그인'}
+        label={isLabel}
         className={'login-btn'}
         clickHandler={loginBtnHandler}
       />

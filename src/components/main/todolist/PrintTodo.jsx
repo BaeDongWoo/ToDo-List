@@ -14,7 +14,9 @@ const PrintTodo = ({ todoList, setTodoList }) => {
     let updateTodos = [...todoList];
     const moved = updateTodos.splice(sourceIndex, 1)[0];
     updateTodos.splice(destinationIndex, 0, moved);
-    updateTodos.map((todo, index) => ({ ...todo, id: index }));
+    updateTodos = updateTodos.map((todo, idx) => {
+      return { ...todo, id: idx };
+    });
     dispatch(setTodoList(updateTodos));
   };
 

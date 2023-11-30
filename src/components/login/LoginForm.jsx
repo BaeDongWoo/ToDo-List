@@ -4,10 +4,13 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Header from '../form/Header';
+import { useDispatch } from 'react-redux';
+import { setUserInfo } from '../reducer/Action';
 const LoginForm = () => {
   const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
   const nav = useNavigate();
+  const dispatch = useDispatch();
   const signUpPage = () => {
     nav('/signUp');
   };
@@ -18,19 +21,20 @@ const LoginForm = () => {
         userId,
         password,
       });
-      console.log(response.data);
       // 서버에서의 응답을 확인하고 처리
       if (response.data.length !== 0) {
         const userInfo = response.data[0];
-        localStorage.setItem('userInfo', JSON.stringify(userInfo));
+        dispatch(setUserInfo(userInfo));
+        sessionStorage.setItem('userInfo', JSON.stringify(userInfo));
         nav('/MainPage');
       } else {
         alert('아이디 또는 비밀번호가 다릅니다.');
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.log(error);
     }
   };
+
   return (
     <div className="login-container">
       <Header />

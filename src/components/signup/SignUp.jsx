@@ -43,24 +43,23 @@ const SignUp = () => {
     if (!val.isCheckPwd(password, confirmPassword)) {
       return alert('비밀번호를 다시 확인해주세요.');
     }
-    // try {
-    //   const response = await axios.post('http://localhost:3005/signUp', {
-    //     userName,
-    //     userId,
-    //     password,
-    //   });
-    //   console.log(response.data);
-    //   // 서버에서의 응답을 확인하고 처리
-    //   if (response.data === 1) {
-    //     // 아이디가 있음
-    //     alert('중복된 아이디 입니다.');
-    //   } else {
-    //     //아이디 없음
-    //     nav('/login');
-    //   }
-    // } catch (error) {
-    //   console.error('Error:', error);
-    // }
+    try {
+      const response = await axios.post('http://localhost:3005/signUp', {
+        userName,
+        userId,
+        password,
+      });
+      // 서버에서의 응답을 확인하고 처리
+      if (response.data === 1) {
+        // 아이디가 있음
+        alert('중복된 아이디 입니다.');
+      } else {
+        //아이디 없음
+        nav('/login');
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div className="signup-container">
