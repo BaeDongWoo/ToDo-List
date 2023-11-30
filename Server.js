@@ -48,6 +48,48 @@ app.post('/signUp', (req, res) => {
     }
   );
 });
+app.post('/getTodoList', (req, res) => {
+  const userInfo = req.body.userInfo;
+  connection.query(
+    'SELECT todo_date FROM todo_list where todo_user_id=? GROUP BY todo_date',
+    [userInfo.user_id],
+    (err, results, fields) => {
+      const dateList = results;
+      connection.query(
+        'SELECT todo_id,todo_title,todo_checked,todo_date from todo_list where todo_user_id=?',
+        [userInfo.user_id],
+        (err, results, fields) => {
+          const allTodoList = results;
+          const resData = { dateList: dateList, allTodoList: allTodoList };
+          res.status(200).json(resData);
+        }
+      );
+    }
+  );
+});
+app.post('/saveTodo', (req, res) => {
+  const userInfo = req.body.userInfo;
+  const dateFormat = req.body.dateFormat;
+  const todoList = req.body.setTodos;
+  connection.query(
+    'DELETE FROM todo_list WHERE todo_user_id = ? AND todo_date = ?',
+    [userInfo.user_id, dateFormat],
+    (err, results, fields) => {
+      if (err) throw err;
+      for (let i = 0; i < todoList.length; i++) {
+        const todo = todoList[i];
+        connection.query(
+          'INSERT INTO todo_list (todo_id, todo_title, todo_checked, todo_date, todo_user_id)VALUES(?, ?, ?, ?, ?)',
+          [todo.id, todo.title, todo.checked, dateFormat, userInfo.user_id],
+          (err, results, fields) => {
+            if (err) throw err;
+          }
+        );
+      }
+      res.status(200).send('저장이완료 되었습니다.');
+    }
+  );
+});
 app.use((req, res) => {
   res.status(404).send('페이지를 찾을 수 없습니다.');
 });
