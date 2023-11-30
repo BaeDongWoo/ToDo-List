@@ -1,7 +1,11 @@
 export const DateFormat = (date) => {
-  const tempY = date.getFullYear();
-  const tempM = date.getMonth();
-  const tempD = date.getDate();
-  const dateFormat = [tempY, tempM + 1, tempD].join('-');
+  let dateFormat =
+    date.getFullYear() +
+    '-' +
+    (date.getMonth() + 1 < 9
+      ? '0' + (date.getMonth() + 1)
+      : date.getMonth() + 1) +
+    '-' +
+    (date.getDate() < 9 ? '0' + date.getDate() : date.getDate());
   return dateFormat;
 };
