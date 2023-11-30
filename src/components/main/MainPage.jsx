@@ -16,11 +16,11 @@ const MainPage = () => {
   useEffect(() => {
     if (userInfo) {
       const getData = async () => {
-        const data = await axios.post('http://localhost:3005/getTodoList', {
+        const response = await axios.post('http://localhost:3005/getTodoList', {
           userInfo,
         });
-        const dateList = data.data.dateList;
-        const allList = data.data.allTodoList;
+        const dateList = response.data.dateList;
+        const allList = response.data.allTodoList;
         const setData = [];
         for (let i = 0; i < dateList.length; i++) {
           const tempTodo = allList.filter(
@@ -36,17 +36,27 @@ const MainPage = () => {
           setData.push({ date: dateList[i].todo_date, todoList: setList });
         }
         dispatch(setAllTodoList(setData));
+        const dateFormat = DateFormat(date);
+        const todoListForDate = setData.find(
+          (item) => item.date === dateFormat
+        );
+        if (todoListForDate) {
+          dispatch(setTodoList(todoListForDate.todoList));
+        } else {
+          dispatch(setTodoList([]));
+        }
       };
       getData();
-    }
-    const dateFormat = DateFormat(date);
-    const todoListForDate = allTodoList.find(
-      (item) => item.date === dateFormat
-    );
-    if (todoListForDate) {
-      dispatch(setTodoList(todoListForDate.todoList));
     } else {
-      dispatch(setTodoList([]));
+      const dateFormat = DateFormat(date);
+      const todoListForDate = allTodoList.find(
+        (item) => item.date === dateFormat
+      );
+      if (todoListForDate) {
+        dispatch(setTodoList(todoListForDate.todoList));
+      } else {
+        dispatch(setTodoList([]));
+      }
     }
   }, [date]);
   return (
