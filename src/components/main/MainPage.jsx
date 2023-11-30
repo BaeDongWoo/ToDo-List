@@ -6,12 +6,39 @@ import Header from '../form/Header';
 import { DateFormat } from '../form/DateFormat';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { setTodoList } from '../reducer/Action';
+import { setAllTodoList, setTodoList } from '../reducer/Action';
+import axios from 'axios';
 const MainPage = () => {
   const date = useSelector((state) => state.date);
   const allTodoList = useSelector((state) => state.allTodoList);
   const dispatch = useDispatch();
+  const userInfo = useSelector((state) => state.userInfo);
   useEffect(() => {
+    if (userInfo) {
+      const getData = async () => {
+        const data = await axios.post('http://localhost:3005/getTodoList', {
+          userInfo,
+        });
+        const dateList = data.data.dateList;
+        const allList = data.data.allTodoList;
+        const setData = [];
+        for (let i = 0; i < dateList.length; i++) {
+          const tempTodo = allList.filter(
+            (todo) => todo.todo_date === dateList[i].todo_date
+          );
+          const setList = tempTodo.map((todo, idx) => {
+            return {
+              title: todo.todo_title,
+              checked: todo.todo_checked === '0' ? false : true,
+              id: idx,
+            };
+          });
+          setData.push({ date: dateList[i].todo_date, todoList: setList });
+        }
+        dispatch(setAllTodoList(setData));
+      };
+      getData();
+    }
     const dateFormat = DateFormat(date);
     const todoListForDate = allTodoList.find(
       (item) => item.date === dateFormat
@@ -21,7 +48,7 @@ const MainPage = () => {
     } else {
       dispatch(setTodoList([]));
     }
-  }, [date, allTodoList, dispatch]);
+  }, [date]);
   return (
     <div className="main-page">
       <Header />
