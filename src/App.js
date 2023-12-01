@@ -7,14 +7,12 @@ import SingUp from './components/signup/SignUp';
 
 function App() {
   return (
-    <Router basename={process.env.PUBLIC_URL}>
-      <Routes>
-        <Route path="/" element={<LoginPage />} />
-        <Route path="/login" element={<LoginForm />} />
-        <Route path="/signUp" element={<SingUp />} />
-        <Route path="/MainPage" element={<MainPage />} />
-      </Routes>
-    </Router>
+    <Routes>
+      <Route path="/" element={<LoginPage />} />
+      <Route path="/login" element={<LoginForm />} />
+      <Route path="/signUp" element={<SingUp />} />
+      <Route path="/MainPage" element={<MainPage />} />
+    </Routes>
   );
 }
 

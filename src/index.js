@@ -6,12 +6,16 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import mainReducer from './components/reducer/Reducer';
 import { createStore } from 'redux';
+import { BrowserRouter, HashRouter } from 'react-router-dom';
 
 const store = createStore(mainReducer);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
-    <App />
+    <HashRouter basename={process.env.PUBLIC_URL}>
+      {' '}
+      <App />
+    </HashRouter>
   </Provider>
 );
 
