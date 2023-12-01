@@ -13,9 +13,10 @@ const TodoList = ({ date, setTodoList, allTodoList }) => {
   const [showConfirm, setShowConfirm] = useState(false);
   const userInfo = useSelector((state) => state.userInfo);
   const handleButtonClick = () => {
-    if (!userInfo) return alert('저장하기는 로그인 후 이용 가능합니다.');
+    // if (!userInfo) return alert('저장하기는 로그인 후 이용 가능합니다.');
     setShowConfirm(true);
   };
+
   const todoList = useSelector((state) => state.todoList);
   const dispatch = useDispatch();
   const saveHandler = async () => {
@@ -23,17 +24,19 @@ const TodoList = ({ date, setTodoList, allTodoList }) => {
     const tempAllTodo = allTodoList.filter((todo) => todo.date !== dateFormat);
     tempAllTodo.push({ date: dateFormat, todoList: todoList });
     dispatch(setAllTodoList([...tempAllTodo]));
-    try {
-      const setTodos = todoList.map((todo) => {
-        return { ...todo, checked: todo.checked === false ? '0' : '1' };
-      });
-      const response = await axios.post('http://localhost:3005/saveTodo', {
-        userInfo,
-        dateFormat,
-        setTodos,
-      });
-    } catch (error) {
-      console.log(error);
+    if (userInfo) {
+      try {
+        const setTodos = todoList.map((todo) => {
+          return { ...todo, checked: todo.checked === false ? '0' : '1' };
+        });
+        await axios.post('http://localhost:3005/saveTodo', {
+          userInfo,
+          dateFormat,
+          setTodos,
+        });
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
   const rollbackHandler = () => {
