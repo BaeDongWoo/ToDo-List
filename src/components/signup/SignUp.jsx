@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import Header from '../form/Header';
 import './SignUp.css';
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import Input from './Input';
 import axios from 'axios';
 import validation from './validation';
@@ -70,28 +70,28 @@ const SignUp = () => {
           <Input
             title={'이름'}
             typed={'text'}
-            id={'user-name'}
+            className={'user-name'}
             value={userName}
             onChangeEvent={setUserName}
           />
           <Input
             title={'아이디'}
             typed={'text'}
-            id={'id'}
+            className={'id'}
             value={userId}
             onChangeEvent={setUserId}
           />
           <Input
             title={'비밀번호'}
             typed={'password'}
-            id={isConfirmPwdId}
+            className={isConfirmPwdId}
             value={password}
             onChangeEvent={PwdHandler}
           />
           <Input
             title={'비밀번호 확인'}
             typed={'password'}
-            id={isConfirmPwdId}
+            className={isConfirmPwdId}
             value={confirmPassword}
             onChangeEvent={confirmPwdHandler}
           />

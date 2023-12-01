@@ -45,12 +45,12 @@
   background-color: #e0bf51;
 }
 
-#signup-form #confirm-password-failure {
+#signup-form .confirm-password-failure {
   border: 3px solid red;
 }
-#signup-form #confirm-password-success {
+#signup-form .confirm-password-success {
   border: 3px solid green;
 }
-#signup-form #confirm-password {
+#signup-form .confirm-password {
   border: 3px solid #e8f0fe;
 }

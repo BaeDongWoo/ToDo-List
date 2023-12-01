@@ -1,10 +1,10 @@
-const Input = ({ title, typed, id, value, onChangeEvent }) => {
+const Input = ({ title, typed, className, value, onChangeEvent }) => {
   return (
     <div className="form-group">
-      <label htmlFor={id}>{title}</label>
+      <label htmlFor={className}>{title}</label>
       <input
         type={typed}
-        id={id}
+        className={className}
         value={value}
         onChange={(e) => onChangeEvent(e.target.value)}
         required
