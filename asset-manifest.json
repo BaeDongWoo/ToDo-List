@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/BaeDongWoo/ToDo-List/static/css/main.d08a0417.css",
+    "main.js": "/BaeDongWoo/ToDo-List/static/js/main.84cb6518.js",
+    "static/js/787.feac5112.chunk.js": "/BaeDongWoo/ToDo-List/static/js/787.feac5112.chunk.js",
+    "static/media/mytodo-logo.png": "/BaeDongWoo/ToDo-List/static/media/mytodo-logo.1de1cb0c106c36a9da78.png",
+    "index.html": "/BaeDongWoo/ToDo-List/index.html",
+    "main.d08a0417.css.map": "/BaeDongWoo/ToDo-List/static/css/main.d08a0417.css.map",
+    "main.84cb6518.js.map": "/BaeDongWoo/ToDo-List/static/js/main.84cb6518.js.map",
+    "787.feac5112.chunk.js.map": "/BaeDongWoo/ToDo-List/static/js/787.feac5112.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d08a0417.css",
+    "static/js/main.84cb6518.js"
+  ]
+}
