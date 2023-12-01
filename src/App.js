@@ -8,7 +8,7 @@ import SingUp from './components/signup/SignUp';
 function App() {
   return (
     <Routes>
-      <Route path="/Todo" element={<LoginPage />} />
+      <Route path="/" element={<LoginPage />} />
       <Route path="/login" element={<LoginForm />} />
       <Route path="/signUp" element={<SingUp />} />
       <Route path="/MainPage" element={<MainPage />} />
