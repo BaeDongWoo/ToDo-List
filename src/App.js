@@ -7,7 +7,7 @@ import SingUp from './components/signup/SignUp';
 
 function App() {
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/login" element={<LoginForm />} />
