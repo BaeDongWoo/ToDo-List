@@ -1,4 +1,3 @@
-import Card from '../main/todolist/Card';
 import './Header.css';
 import Logo from '../../assets/mytodo-logo.png';
 import Button from './Button';
