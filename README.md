@@ -8,7 +8,7 @@
 
 ---
 
-<h3>🚀:링크</h3>
+<h3>🚀링크</h3>
 
 > https://baedongwoo.github.io/ToDo-List/
 
@@ -45,7 +45,7 @@
 <h3>😄개발 인원</h3>
 - 1인 개인 프로젝트
 
-<h3>:notebook 서비스 화면</h3>
+<h3>📓 서비스 화면</h3>
 
 ![My_ToDo-001](https://github.com/BaeDongWoo/ToDo-List/assets/114900672/7e13d634-913e-4d22-8241-d93e821ff52e)
 
