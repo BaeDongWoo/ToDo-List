@@ -8,9 +8,8 @@ import { setAllTodoList, setTodoList, setUserInfo } from '../reducer/Action';
 import { DateFormat } from '../form/DateFormat';
 import { useSelector } from 'react-redux';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth, fireStore } from '../config/firebaseConfig';
+import { auth } from '../config/firebaseConfig';
 import ErrorHandler from '../error/errorHander';
-import { collection, getDocs, query } from 'firebase/firestore';
 import { getData } from '../firebasestore/Data';
 const LoginForm = () => {
   const date = useSelector((state) => state.date);
@@ -30,7 +29,7 @@ const LoginForm = () => {
       dispatch(setUserInfo(uid));
       const allList = await getData();
       dispatch(setAllTodoList(allList));
-      const dateFormat = DateFormat(date);
+      const dateFormat = DateFormat(new Date(date));
       const todoListForDate = allList.find((item) => item.date === dateFormat);
       if (todoListForDate) {
         dispatch(setTodoList(todoListForDate.todoList));

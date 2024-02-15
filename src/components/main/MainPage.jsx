@@ -8,11 +8,11 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { setTodoList } from '../reducer/Action';
 const MainPage = () => {
-  const date = useSelector((state) => state.date);
+  const date = new Date(useSelector((state) => state.date));
   const allTodoList = useSelector((state) => state.allTodoList);
   const dispatch = useDispatch();
   useEffect(() => {
-    const dateFormat = DateFormat(date);
+    const dateFormat = DateFormat(new Date(date));
     const todoListForDate = allTodoList.find(
       (item) => item.date === dateFormat
     );
