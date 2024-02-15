@@ -17,17 +17,17 @@ const TodoList = ({ date, setTodoList, allTodoList }) => {
     setShowConfirm(true);
   };
   const todoList = useSelector((state) => state.todoList);
+  const uid = useSelector((state) => state.userInfo);
   const dispatch = useDispatch();
   const saveHandler = async () => {
     const selectDate = DateFormat(date);
     try {
-      const uid = JSON.parse(sessionStorage.getItem('userInfo'));
       const q = query(
         doc(fireStore, 'users', uid, 'all_todo_list', selectDate)
       );
       const data = { todo_list: todoList };
       await setDoc(q, data);
-      const allList = await getData();
+      const allList = await getData(uid);
       dispatch(setAllTodoList(allList));
     } catch (error) {}
   };

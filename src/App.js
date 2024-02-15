@@ -4,7 +4,6 @@ import LoginPage from './components/login/LoginPage';
 import MainPage from './components/main/MainPage';
 import LoginForm from './components/login/LoginForm';
 import SingUp from './components/signup/SignUp';
-
 function App() {
   return (
     <Routes>

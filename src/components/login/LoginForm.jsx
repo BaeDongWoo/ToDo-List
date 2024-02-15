@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './LoginForm.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../form/Header';
 import { useDispatch } from 'react-redux';
@@ -13,6 +13,7 @@ import ErrorHandler from '../error/errorHander';
 import { getData } from '../firebasestore/Data';
 const LoginForm = () => {
   const date = useSelector((state) => state.date);
+  const uid = useSelector((state) => state.userInfo);
   const [userEmail, setUserEmail] = useState('');
   const [password, setPassword] = useState('');
   const nav = useNavigate();
@@ -24,12 +25,11 @@ const LoginForm = () => {
     e.preventDefault();
     try {
       const user = await signInWithEmailAndPassword(auth, userEmail, password);
-      const uid = user.user.uid;
-      sessionStorage.setItem('userInfo', JSON.stringify(uid));
-      dispatch(setUserInfo(uid));
-      const allList = await getData();
+      const userInfo = user.user.uid;
+      dispatch(setUserInfo(userInfo));
+      const allList = await getData(userInfo);
       dispatch(setAllTodoList(allList));
-      const dateFormat = DateFormat(new Date(date));
+      const dateFormat = DateFormat(new Date());
       const todoListForDate = allList.find((item) => item.date === dateFormat);
       if (todoListForDate) {
         dispatch(setTodoList(todoListForDate.todoList));
@@ -42,6 +42,9 @@ const LoginForm = () => {
       ErrorHandler(error);
     }
   };
+  useEffect(() => {
+    if (uid !== null) nav('/MainPage');
+  }, []);
   return (
     <div className="login-container">
       <Header />

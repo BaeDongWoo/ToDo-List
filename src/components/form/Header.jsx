@@ -15,7 +15,7 @@ const Header = () => {
   }, []);
   const nav = useNavigate();
   const loginBtnHandler = () => {
-    sessionStorage.clear();
+    // localStorage.clear();
     dispatch(setUserInfo(null));
     dispatch(setAllTodoList([]));
     dispatch(setTodoList([]));

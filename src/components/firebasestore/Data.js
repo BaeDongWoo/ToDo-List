@@ -1,8 +1,7 @@
 import { collection, getDocs, query } from 'firebase/firestore';
 import { fireStore } from '../config/firebaseConfig';
 
-export const getData = async () => {
-  const uid = JSON.parse(sessionStorage.getItem('userInfo'));
+export const getData = async (uid) => {
   const q = query(collection(fireStore, 'users', uid, 'all_todo_list'));
   const response = await getDocs(q);
   const allTodoList = [];
