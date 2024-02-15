@@ -11,6 +11,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth, fireStore } from '../config/firebaseConfig';
 import ErrorHandler from '../error/errorHander';
 import { collection, getDocs, query } from 'firebase/firestore';
+import { getData } from '../firebasestore/Data';
 const LoginForm = () => {
   const date = useSelector((state) => state.date);
   const [userEmail, setUserEmail] = useState('');
@@ -27,21 +28,10 @@ const LoginForm = () => {
       const uid = user.user.uid;
       sessionStorage.setItem('userInfo', JSON.stringify(uid));
       dispatch(setUserInfo(uid));
-      const q = query(collection(fireStore, 'users', uid, 'all_todo_list'));
-      const response = await getDocs(q);
-      const allTodoList = [];
-      response.forEach((todo_list) => {
-        const list = todo_list.data().todo_list;
-        allTodoList.push({
-          date: todo_list.id,
-          todoList: list.map((todo) => todo),
-        });
-      });
-      dispatch(setAllTodoList(allTodoList));
+      const allList = await getData();
+      dispatch(setAllTodoList(allList));
       const dateFormat = DateFormat(date);
-      const todoListForDate = allTodoList.find(
-        (item) => item.date === dateFormat
-      );
+      const todoListForDate = allList.find((item) => item.date === dateFormat);
       if (todoListForDate) {
         dispatch(setTodoList(todoListForDate.todoList));
       } else {

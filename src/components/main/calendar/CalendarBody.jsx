@@ -38,7 +38,7 @@ const CalendarBody = ({ date, setDate }) => {
           <div
             className="week select"
             key={key}
-            onClick={() => selectHandeler(i)}
+            onClick={(e) => selectHandeler(i)}
             value={i}
           >
             {i}
@@ -63,7 +63,7 @@ const CalendarBody = ({ date, setDate }) => {
           <div
             className="week"
             key={key}
-            onClick={() => selectHandeler(i)}
+            onClick={(e) => selectHandeler(i)}
             value={i}
           >
             {i}
