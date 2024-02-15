@@ -8,10 +8,23 @@
 
 <p>##파이어베이스로 변경 및 소셜 로그인 추가 진행중##</p>
 
-<h3>🚀링크</h3>
+<h3>🚀배포 링크</h3>
 
-> https://baedongwoo.github.io/ToDo-List/
+> https://to-do-list-vert-sigma.vercel.app/MainPage
 
+<h3>변경 사항</h3>
+
+1. firebase 이메일 인증 로그인기능 추가
+2. mysql -> firebase store로 변경
+3. 기존의 github page를 통한 배포에서 vercel을 통한 배포로 변경
+
+<h3>테스트용 계정</h3>
+
+> 아이디 : test@naver.com
+> 
+> 비밀번호 : test12345
+>
+> 직접 가입하셔도 됩니당@
 ---
 
 <h3>🔨기술 스택</h3>
@@ -37,11 +50,16 @@
 
 ### ✔️DB
 
-<img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white"> 
+<img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
+<img src="https://img.shields.io/badge/firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=white">
 </div>
 
 <h3>📅개발 기간</h3>
 - 2023.11.23~2023.12.04
+
+- 리팩토링 진행중
+  - 2024-02-15 1차 수정
+  - 2차 소셜로그인 추가 예정
 <h3>😄개발 인원</h3>
 - 1인 개인 프로젝트
 
