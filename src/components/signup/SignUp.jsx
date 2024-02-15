@@ -1,13 +1,14 @@
 import { useNavigate } from 'react-router-dom';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../config/firebaseConfig';
 import Header from '../form/Header';
 import './SignUp.css';
 import { useState } from 'react';
 import Input from './Input';
-import axios from 'axios';
+import ErrorHandler from '../error/errorHander';
 import validation from './validation';
 const SignUp = () => {
-  const [userName, setUserName] = useState('');
-  const [userId, setUserId] = useState('');
+  const [userEmail, setUserEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isConfirmPwdId, setIsConfirmPwdId] = useState('confirm-password');
@@ -33,32 +34,22 @@ const SignUp = () => {
   };
   const signUpHandler = async (e) => {
     e.preventDefault();
-    const val = new validation();
-    if (!val.validationId(userId)) {
-      return alert('아이디는 4글자 이상 12글자 이하 영어,숫자만 가능합니다.');
+    const validate = new validation();
+    if (isConfirmPwdId !== 'confirm-password-success') {
+      return alert('비밀번호를 확인해주세요');
     }
-    if (!val.validationPwd(password)) {
+    if (!validate.validationPwd(password)) {
       return alert('비밀번호는 8글자 이상 영어,숫자만 가능합니다.');
     }
-    if (!val.isCheckPwd(password, confirmPassword)) {
-      return alert('비밀번호를 다시 확인해주세요.');
-    }
     try {
-      const response = await axios.post('http://localhost:3005/signUp', {
-        userName,
-        userId,
-        password,
-      });
-      // 서버에서의 응답을 확인하고 처리
-      if (response.data === 1) {
-        // 아이디가 있음
-        alert('중복된 아이디 입니다.');
-      } else {
-        //아이디 없음
-        nav('/login');
-      }
+      const user = await createUserWithEmailAndPassword(
+        auth,
+        userEmail,
+        password
+      );
+      nav('/login');
     } catch (error) {
-      console.log(error);
+      ErrorHandler(error);
     }
   };
   return (
@@ -68,18 +59,11 @@ const SignUp = () => {
         <h2>회원가입</h2>
         <form id="signup-form">
           <Input
-            title={'이름'}
-            typed={'text'}
-            className={'user-name'}
-            value={userName}
-            onChangeEvent={setUserName}
-          />
-          <Input
-            title={'아이디'}
+            title={'이메일'}
             typed={'text'}
             className={'id'}
-            value={userId}
-            onChangeEvent={setUserId}
+            value={userEmail}
+            onChangeEvent={setUserEmail}
           />
           <Input
             title={'비밀번호'}
