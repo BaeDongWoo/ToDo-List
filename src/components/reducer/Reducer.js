@@ -4,13 +4,21 @@ import {
   SET_ALL_TODO_LIST,
   USER_INFO,
 } from './Action';
-
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 const initialMainState = {
   userInfo: JSON.parse(sessionStorage.getItem('userInfo')),
   date: new Date(),
   todoList: [],
   allTodoList: [],
 };
+
+const persistConfig = {
+  key: 'root',
+  storage,
+  whitelist: ['userInfo', 'date', 'todoList', 'allTodoList'],
+};
+
 const mainReducer = (state = initialMainState, action) => {
   switch (action.type) {
     case SET_DATE:
@@ -25,4 +33,5 @@ const mainReducer = (state = initialMainState, action) => {
       return state;
   }
 };
-export default mainReducer;
+const perReducer = persistReducer(persistConfig, mainReducer);
+export default perReducer;
