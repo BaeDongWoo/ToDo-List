@@ -13,7 +13,6 @@ import ErrorHandler from '../error/errorHander';
 import { collection, getDocs, query } from 'firebase/firestore';
 const LoginForm = () => {
   const date = useSelector((state) => state.date);
-  const userInfo = useSelector((state) => state.userInfo);
   const [userEmail, setUserEmail] = useState('');
   const [password, setPassword] = useState('');
   const nav = useNavigate();
@@ -30,13 +29,30 @@ const LoginForm = () => {
       dispatch(setUserInfo(uid));
       const q = query(collection(fireStore, 'users', uid, 'all_todo_list'));
       const response = await getDocs(q);
-      // nav('/MainPage');
+      const allTodoList = [];
+      response.forEach((todo_list) => {
+        const list = todo_list.data().todo_list;
+        allTodoList.push({
+          date: todo_list.id,
+          todoList: list.map((todo) => todo),
+        });
+      });
+      dispatch(setAllTodoList(allTodoList));
+      const dateFormat = DateFormat(date);
+      const todoListForDate = allTodoList.find(
+        (item) => item.date === dateFormat
+      );
+      if (todoListForDate) {
+        dispatch(setTodoList(todoListForDate.todoList));
+      } else {
+        dispatch(setTodoList([]));
+      }
+      nav('/MainPage');
     } catch (error) {
       console.error(error);
       ErrorHandler(error);
     }
   };
-
   return (
     <div className="login-container">
       <Header />
