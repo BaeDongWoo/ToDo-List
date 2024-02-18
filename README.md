@@ -10,7 +10,7 @@
 
 <h3>🚀배포 링크</h3>
 
-> https://to-do-list-vert-sigma.vercel.app/MainPage
+> https://bdw-my-todo.vercel.app
 
 <h3>변경 사항</h3>
 
