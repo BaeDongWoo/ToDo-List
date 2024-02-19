@@ -4,15 +4,20 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../form/Header';
 import { useDispatch } from 'react-redux';
-import { setAllTodoList, setTodoList, setUserInfo } from '../reducer/Action';
+import {
+  setAllTodoList,
+  setDate,
+  setTodoList,
+  setUserInfo,
+} from '../reducer/Action';
 import { DateFormat } from '../form/DateFormat';
 import { useSelector } from 'react-redux';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../config/firebaseConfig';
 import ErrorHandler from '../error/errorHander';
 import { getData } from '../firebasestore/Data';
+import GoogleLogin from './social/GoogleLogin';
 const LoginForm = () => {
-  const date = useSelector((state) => state.date);
   const uid = useSelector((state) => state.userInfo);
   const [userEmail, setUserEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -30,6 +35,7 @@ const LoginForm = () => {
       const allList = await getData(userInfo);
       dispatch(setAllTodoList(allList));
       const dateFormat = DateFormat(new Date());
+      dispatch(setDate(dateFormat));
       const todoListForDate = allList.find((item) => item.date === dateFormat);
       if (todoListForDate) {
         dispatch(setTodoList(todoListForDate.todoList));
@@ -44,6 +50,7 @@ const LoginForm = () => {
   };
   useEffect(() => {
     if (uid !== null) nav('/MainPage');
+    console.log(new Date());
   }, []);
   return (
     <div className="login-container">
@@ -70,6 +77,7 @@ const LoginForm = () => {
           <input type="submit" value="로그인"></input>
           <input type="button" value="회원가입" onClick={signUpPage}></input>
         </form>
+        <GoogleLogin />
       </div>
     </div>
   );
