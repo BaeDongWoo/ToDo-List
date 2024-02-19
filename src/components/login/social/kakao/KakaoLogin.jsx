@@ -1,0 +1,17 @@
+const KakaoLogin = () => {
+  const CLIENT_ID = process.env.REACT_APP_KAKAO_CLIENT_ID; //REST API KEY
+  //   const REDIRECT_URL = "https://bdw-my-todo.vercel.app/kakao-auth"; //Redirect URI
+
+  const REDIRECT_URL = 'http://localhost:3000/auth'; //Redirect URI
+  const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URL}&response_type=code`;
+  const LoginHandler = async () => {
+    // window.location.href = `${kakaoURL}&prompt=login`;
+    window.location.href = kakaoURL;
+  };
+  return (
+    <>
+      <img src="kakao_icon.png" onClick={LoginHandler}></img>
+    </>
+  );
+};
+export default KakaoLogin;
