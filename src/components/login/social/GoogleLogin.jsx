@@ -1,6 +1,5 @@
 import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
 import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
 import {
   setAllTodoList,
   setDate,
@@ -14,7 +13,6 @@ import { useNavigate } from 'react-router-dom';
 const GoogleLogin = () => {
   const nav = useNavigate();
   const auth = getAuth();
-  const uid = useSelector((state) => state.userInfo);
   const dispatch = useDispatch();
   const googleAuthHandler = async () => {
     const provider = new GoogleAuthProvider();
@@ -39,7 +37,11 @@ const GoogleLogin = () => {
   };
   return (
     <>
-      <img src="google_icon2.png" onClick={googleAuthHandler}></img>
+      <img
+        src="google_icon2.png"
+        onClick={googleAuthHandler}
+        className="sns-login-icon"
+      ></img>
     </>
   );
 };

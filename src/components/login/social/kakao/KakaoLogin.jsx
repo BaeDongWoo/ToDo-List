@@ -10,7 +10,11 @@ const KakaoLogin = () => {
   };
   return (
     <>
-      <img src="kakao_icon.png" onClick={LoginHandler}></img>
+      <img
+        src="kakao_icon.png"
+        onClick={LoginHandler}
+        className="sns-login-icon"
+      ></img>
     </>
   );
 };

@@ -1,5 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './LoginForm.css';
+import './social/SocialIcon.css';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../form/Header';
@@ -17,6 +18,8 @@ import { auth } from '../config/firebaseConfig';
 import ErrorHandler from '../error/errorHander';
 import { getData } from '../firebasestore/Data';
 import GoogleLogin from './social/GoogleLogin';
+import KakaoLogin from './social/kakao/KakaoLogin';
+import NaverLogin from './social/naver/NaverLogin';
 const LoginForm = () => {
   const uid = useSelector((state) => state.userInfo);
   const [userEmail, setUserEmail] = useState('');
@@ -50,7 +53,6 @@ const LoginForm = () => {
   };
   useEffect(() => {
     if (uid !== null) nav('/MainPage');
-    console.log(new Date());
   }, []);
   return (
     <div className="login-container">
@@ -77,7 +79,13 @@ const LoginForm = () => {
           <input type="submit" value="로그인"></input>
           <input type="button" value="회원가입" onClick={signUpPage}></input>
         </form>
-        <GoogleLogin />
+        <hr class="hr-text" data-content="OR"></hr>
+        <p id="sns-login-exp">sns로 간편 로그인하기</p>
+        <div className="sns-icon">
+          <GoogleLogin />
+          <KakaoLogin />
+          <NaverLogin />
+        </div>
       </div>
     </div>
   );
