@@ -14,7 +14,7 @@ import { DateFormat } from '../../../form/DateFormat';
 
 const KakaoLoginCallback = () => {
   const CLIENT_ID = process.env.REACT_APP_KAKAO_CLIENT_ID;
-  const REDIRECT_URL = 'http://localhost:3000/auth';
+  const REDIRECT_URL = 'https://bdw-my-todo.vercel.app/kakao-auth';
   const nav = useNavigate();
   const dispatch = useDispatch();
   const code = new URL(window.location.href).searchParams.get('code');

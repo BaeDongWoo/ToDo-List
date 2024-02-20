@@ -13,7 +13,8 @@ import { DateFormat } from '../../../form/DateFormat';
 const NaverLogin = () => {
   const { naver } = window;
   const NAVER_CLIENT_ID = process.env.REACT_APP_NAVER_CLIENT_ID;
-  const NAVER_CALLBACK_URL = 'http://localhost:3000/login';
+  //   const NAVER_CALLBACK_URL = 'http://localhost:3000/login'; //로컬용
+  const NAVER_CALLBACK_URL = 'https://bdw-my-todo.vercel.app/login'; //배포용
   const nav = useNavigate();
   const dispatch = useDispatch();
   const NaverLoginInit = () => {
