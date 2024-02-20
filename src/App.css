@@ -1,9 +1,13 @@
 html {
   text-align: center;
   background-color: #1a1f27;
-  min-width: 1920px;
-  min-height: 1080px;
+  max-width: 1920px;
+  max-height: 1080px;
+}
+*::-webkit-scrollbar {
+  display: none;
 }
 * {
   border: none;
+  -ms-overflow-style: none;
 }
