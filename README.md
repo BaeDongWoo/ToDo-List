@@ -4,7 +4,11 @@
 
 <h3>❓My-ToDo?</h3>
 
-> 캘린더를 활용해 일별 할일을 등록하는 서비스
+캘린더를 활용한 투두 리스트
+
+> 처음으로 진행한 개인 토이 프로젝트로 흔한 아이디어지만 redux를 사용한 상태관리,
+> 토큰 인증과 로그인 인증, 다양한 sns로그인, MySql과 Firebase store 데이터베이스 사용, 캘리더 구현과 배포 등
+> 계속해서 기능을 추가하며 업데이트 해온 서비스 입니다.
 
 <h3>🚀배포 링크</h3>
 
@@ -21,8 +25,6 @@
 ---
 
 <h3>🔨기술 스택</h3>
-
----
 
 <div align=left>
 
@@ -69,7 +71,7 @@
 
 <h3>📓 서비스 화면</h3>
 
-![My_ToDo-001](https://github.com/BaeDongWoo/ToDo-List/assets/114900672/7e13d634-913e-4d22-8241-d93e821ff52e)
+![My_ToDo-001 (2)](https://github.com/BaeDongWoo/ToDo-List/assets/114900672/8ec08de1-f67e-4444-950a-c4788a48c111)
 
 <h3>프로젝트 상세</h3>
 <h3>💡주요 기능</h3>
@@ -81,7 +83,7 @@
 
 <h3>구현 상세</h3>
 
-<h4>파일 구조</h4>
+- <h4>파일 구조</h4>
 
 ```bash
 ├── src
@@ -99,7 +101,7 @@
 |     └── signup
 ``` 
 
-<h4>로그인</h4>
+- <h4>로그인</h4>
 이메일 로그인과 sns로그인은 각각의 인증 서비스를 통해 인증을 받습니다.  
 
 ![image](https://github.com/BaeDongWoo/ToDo-List/assets/114900672/6610b843-fae2-41fb-94b4-8015dc92ba76)
@@ -108,7 +110,7 @@
 카카오 -> 카카오 인증
 네이버 -> 네이버 인증
 
-<h4>Firebase Store</h4>
+- <h4>Firebase Store</h4>
 
 - 컬렉션 구조
  ```bash
@@ -127,34 +129,41 @@
 해당 유저의 all_todo_list 컬렉션에는 저장한 날짜를 고유 문서로 가지며,
 저장된 날짜에는 todo_list 목록을 필드로 저장합니다.
  
-<h4>상태관리(Redux Store)</h4>
+- <h4>상태관리(Redux Store)</h4>
 사용자의 할일 목록을 전역에서 사용하기 위해 상태관리 라이브러리인 Redux Store를 사용합니다.
 
 ![image](https://github.com/BaeDongWoo/ToDo-List/assets/114900672/e4ce3cdc-8b20-41b3-a4be-1adeb338807c)
 - 컴포넌트에서 Firebase Store에 데이터를 요청하고 응답 받은 데이터를 Redux Store에 저장합니다.
 - 이후 컴포넌트에서 필요한 데이터를 Redux Store에 요청하고 스토어는 요청받은 데이터를 반환합니다.
 
-<h4>캘린더</h4>
+- <h4>캘린더</h4>
 
 ![image](https://github.com/BaeDongWoo/ToDo-List/assets/114900672/683281d4-660e-4f6a-ab45-25059ea8d6a0)
 
 - 캘린더를 쉽게 구현할 수 있는 라이브러리가 있지만, 원하는 디자인과 캘린더의 각각 날짜에 해당하는 일정의 미리보기 기능을
   구현하기 위해 JavaScript의 Date()를 사용해 직접 구현
   
-<h4>드래그 앤 드롭(react-beautiful-dnd)</h4>
+- <h4>드래그 앤 드롭(react-beautiful-dnd)</h4>
 
 - 사용자 경험 향상을 위해 리액트의 라이브러리인 react-beautiful-dnd를 사용
 - 드래그를 통해 쉽게 목록 변경가능
 
-<h4>배포</h4>
+- <h4>배포</h4>
 
 - Vercel을 통해 서비스를 배포 했습니다.
 
 <h3>서비스 영상</h3>
 <h4>신규 회원 가입</h4>
 
-https://github.com/BaeDongWoo/ToDo-List/assets/114900672/ccc9783e-bd9a-41c7-b38b-98f33ebbbe8e
+https://github.com/BaeDongWoo/ToDo-List/assets/114900672/7d34252c-7df4-48e5-9a37-3980fbeb7090
 
-<h4>기존 사용자</h4>
+<h4>sns 로그인</h4>
 
-https://github.com/BaeDongWoo/ToDo-List/assets/114900672/1c83734e-26f0-4515-a232-8eb4a9deba92
+https://github.com/BaeDongWoo/ToDo-List/assets/114900672/6ef2e7af-ec96-487b-a0ef-b585d02fa80d
+
+<h4>기존 사용자 서비스영상</h4>
+
+https://github.com/BaeDongWoo/ToDo-List/assets/114900672/a2d0ce35-16cb-4243-a788-c839be93c0dc
+
+
+
