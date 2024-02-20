@@ -6,17 +6,9 @@
 
 > 캘린더를 활용해 일별 할일을 등록하는 서비스
 
-<p>##파이어베이스로 변경 및 소셜 로그인 추가 진행중##</p>
-
 <h3>🚀배포 링크</h3>
 
 > https://bdw-my-todo.vercel.app
-
-<h3>변경 사항</h3>
-
-1. firebase 이메일 인증 로그인기능 추가
-2. mysql -> firebase store로 변경
-3. 기존의 github page를 통한 배포에서 vercel을 통한 배포로 변경
 
 <h3>테스트용 계정</h3>
 
@@ -55,12 +47,23 @@
 <img src="https://img.shields.io/badge/firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=white">
 </div>
 
-<h3>📅개발 기간</h3>
+<h3>📅 1차 개발 기간</h3>
 - 2023.11.23~2023.12.04
 
-- 리팩토링 진행중
-  - 2024-02-15 1차 수정
-  - 2차 소셜로그인 추가 예정
+<h3>📅 2차 개발 기간</h3>
+- 2024.02.15~2024.02.20
+
+<h3>변경 및 추가 사항</h3>
+
+> 1. firebase Authentication
+>    - 기존에는 로컬환경에서만 로그인 및 회원 가입이 가능했지만 firebase 인증을 통해 배포 환경에서도 로그인 및 회원가입이 가능하도록 변경
+> 2. firebase store 
+>     - 기존의 MySql대신 firebase store를 통해 사용자의 일정을 저장하도록 구현 
+> 3. 소셜 로그인
+>     - 구글, 카카오, 네이버 아이디를 사용해 로그인이 가능하도록 구현
+> 4. 배포 변경
+>     - 기존에 github page 배포에서 깃허브 push를 통해 자동으로 빌드 후 배포가 가능한 vercel 배포로 변경
+
   <h3>😄개발 인원</h3>
 - 1인 개인 프로젝트
 
@@ -71,33 +74,81 @@
 <h3>프로젝트 상세</h3>
 <h3>💡주요 기능</h3>
 
+- 구글, 네이버, 카카오 sns로그인 
 - 캘린더를 통해 사용자가 저장해 놓았던 할일 목록을 날짜별로 미리보기
 - 캘린더의 날짜 선택시 해당 날짜의 할일 목록을 확인
 - 선택한 날짜의 일정 목록을 수정
 
 <h3>구현 상세</h3>
-<h4>JWT 토큰</h4>
 
-- 사용자 로그인 시 JWT 토큰을 발급
-- 할일 목록 작성시 토큰을 통해 확인
-- 30분마다 새로운 토큰을 발급
+<h4>파일 구조</h4>
 
+```bash
+├── src
+│   ├── components               
+│     ├── common              
+│     ├── config
+|     ├── error
+|     ├── firebasestore
+|     ├── login
+|       ├── social
+|     ├── main
+|       ├── calendar
+|       ├── todolist
+|     ├── reducer
+|     └── signup
+``` 
+
+<h4>로그인</h4>
+이메일 로그인과 sns로그인은 각각의 인증 서비스를 통해 인증을 받습니다.  
+
+![image](https://github.com/BaeDongWoo/ToDo-List/assets/114900672/6610b843-fae2-41fb-94b4-8015dc92ba76)
+
+이메일과 google -> firebase
+카카오 -> 카카오 인증
+네이버 -> 네이버 인증
+
+<h4>Firebase Store</h4>
+
+- 컬렉션 구조
+ ```bash
+├── users  - collection (유저 목록)
+│   ├── uid - doc (회원가입한 유저의 uid)
+│   	├── all_todo_list - collection (날짜별 할일 목록)
+│   		├── date - doc (저장된 날짜)
+│				├── todo_list <Array> - field (해당 날짜의 할일 목록)
+│					├── todo_title <map-string> - field (제목)
+│					├── todo_id <map-number> - field (번호)
+│					└── todo_checked <map-boolean> - field (체크)
+
+```
+
+데이터를 조회하기 위한 uid는 회원가입한 유저에게 발급되는 uid를 사용합니다.
+해당 유저의 all_todo_list 컬렉션에는 저장한 날짜를 고유 문서로 가지며,
+저장된 날짜에는 todo_list 목록을 필드로 저장합니다.
+ 
 <h4>상태관리(Redux Store)</h4>
+사용자의 할일 목록을 전역에서 사용하기 위해 상태관리 라이브러리인 Redux Store를 사용합니다.
 
-- 사용자 로그인시 서버로 부터 받은 사용자 정보와 할일 목록을 전역으로 사용하기위해 Redux Store에 저장하고 이를 각 컴포넌트에서 사용
+![image](https://github.com/BaeDongWoo/ToDo-List/assets/114900672/e4ce3cdc-8b20-41b3-a4be-1adeb338807c)
+- 컴포넌트에서 Firebase Store에 데이터를 요청하고 응답 받은 데이터를 Redux Store에 저장합니다.
+- 이후 컴포넌트에서 필요한 데이터를 Redux Store에 요청하고 스토어는 요청받은 데이터를 반환합니다.
 
 <h4>캘린더</h4>
 
-- JavaScript의 Date()함수를 활용해 캘린더 구현
+![image](https://github.com/BaeDongWoo/ToDo-List/assets/114900672/683281d4-660e-4f6a-ab45-25059ea8d6a0)
 
+- 캘린더를 쉽게 구현할 수 있는 라이브러리가 있지만, 원하는 디자인과 캘린더의 각각 날짜에 해당하는 일정의 미리보기 기능을
+  구현하기 위해 JavaScript의 Date()를 사용해 직접 구현
+  
 <h4>드래그 앤 드롭(react-beautiful-dnd)</h4>
 
 - 사용자 경험 향상을 위해 리액트의 라이브러리인 react-beautiful-dnd를 사용
 - 드래그를 통해 쉽게 목록 변경가능
 
-<h4>GitHub Page 배포</h4>
+<h4>배포</h4>
 
-- GitHub Page를 통해 서비스 페이지 배포
+- Vercel을 통해 서비스를 배포 했습니다.
 
 <h3>서비스 영상</h3>
 <h4>신규 회원 가입</h4>
