@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './CalendarBody.css';
-import { DateFormat } from '../../form/DateFormat';
+import { DateFormat } from '../../common/DateFormat';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 const CalendarBody = ({ date, setDate }) => {

@@ -8,7 +8,7 @@ import {
 } from '../../../reducer/Action';
 import { getData } from '../../../firebasestore/Data';
 import { useDispatch } from 'react-redux';
-import { DateFormat } from '../../../form/DateFormat';
+import { DateFormat } from '../../../common/DateFormat';
 
 const NaverLogin = () => {
   const { naver } = window;

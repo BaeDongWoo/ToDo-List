@@ -1,13 +1,11 @@
-import Frame from '../form/Frame';
-import LoginForm from './LoginForm';
+import Frame from '../common/Frame';
 import LoginTitle from './LoginTitle';
 import './LoginPage.css';
 import { useNavigate } from 'react-router-dom';
 const LoginPage = () => {
-  // const [startBtn, setStartBtn] = useState(false);
   const nav = useNavigate();
   const startBtnHandler = () => {
-    nav('/MainPage');
+    nav('/login');
   };
   return (
     <Frame className="login">

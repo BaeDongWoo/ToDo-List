@@ -1,4 +1,4 @@
-import Button from '../form/Button';
+import Button from '../common/Button';
 import './LoginTitle.css';
 const LoginTitle = (props) => {
   return (

@@ -10,7 +10,7 @@ import {
   setUserInfo,
 } from '../../../reducer/Action';
 import { getData } from '../../../firebasestore/Data';
-import { DateFormat } from '../../../form/DateFormat';
+import { DateFormat } from '../../../common/DateFormat';
 
 const KakaoLoginCallback = () => {
   const CLIENT_ID = process.env.REACT_APP_KAKAO_CLIENT_ID;

@@ -7,7 +7,7 @@ import {
   setUserInfo,
 } from '../../reducer/Action';
 import { getData } from '../../firebasestore/Data';
-import { DateFormat } from '../../form/DateFormat';
+import { DateFormat } from '../../common/DateFormat';
 import ErrorHandler from '../../error/errorHander';
 import { useNavigate } from 'react-router-dom';
 const GoogleLogin = () => {

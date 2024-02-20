@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../config/firebaseConfig';
-import Header from '../form/Header';
+import Header from '../common/Header';
 import './SignUp.css';
 import { useState } from 'react';
 import Input from './Input';
