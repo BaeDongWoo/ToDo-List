@@ -12,7 +12,7 @@ function App() {
       <Route path="/login" element={<LoginForm />} />
       <Route path="/signUp" element={<SingUp />} />
       <Route path="/MainPage" element={<MainPage />} />
-      <Route path="/auth" element={<KakaoLoginCallback />} />
+      <Route path="/kakao-auth" element={<KakaoLoginCallback />} />
     </Routes>
   );
 }
