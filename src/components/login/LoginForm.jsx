@@ -17,7 +17,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../config/firebaseConfig';
 import ErrorHandler from '../error/errorHander';
 import { getData } from '../firebasestore/Data';
-import GoogleLogin from './social/GoogleLogin';
+import GoogleLogin from './social/google/GoogleLogin';
 import KakaoLogin from './social/kakao/KakaoLogin';
 import NaverLogin from './social/naver/NaverLogin';
 const LoginForm = () => {

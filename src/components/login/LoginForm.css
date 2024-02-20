@@ -31,16 +31,16 @@
   color: #d2d2d2;
 }
 #login-form > input[type='submit'] {
-  margin-right: 5%;
-  width: 45%;
+  /* margin-right: 5%;
+  width: 45%; */
   color: #fff;
   font-size: 25px;
   background-color: #d1ac36;
   border: none;
 }
 #login-form > input[type='button'] {
-  width: 45%;
-  margin-left: 5%;
+  /* width: 45%;
+  margin-left: 5%; */
   border: none;
   background-color: #fff;
   color: #1a1f27;
