@@ -106,9 +106,9 @@
 
 ![image](https://github.com/BaeDongWoo/ToDo-List/assets/114900672/6610b843-fae2-41fb-94b4-8015dc92ba76)
 
-이메일과 google -> firebase
-카카오 -> 카카오 인증
-네이버 -> 네이버 인증
+- 이메일과 google -> firebase
+- 카카오 -> 카카오 인증
+- 네이버 -> 네이버 인증
 
 - <h4>Firebase Store</h4>
 
